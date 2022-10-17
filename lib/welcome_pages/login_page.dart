@@ -1,4 +1,6 @@
 import 'package:ecologist_app/components/button_2.dart';
+import 'package:ecologist_app/main_pages/bottom_nav_bar.dart';
+import 'package:ecologist_app/main_pages/map_page.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../components/constants.dart';
@@ -91,7 +93,14 @@ class _LoginPageState extends State<LoginPage> {
                       textColor: kMainThemeColor1,
                       color: kElementsColor,
                       buttonText: 'Login',
-                      onTap: () async {}),
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => BottomNavBar(),
+                          ),
+                        );
+                      }),
                 )
               ],
             ),

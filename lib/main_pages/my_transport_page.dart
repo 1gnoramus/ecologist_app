@@ -53,7 +53,7 @@ class _MyTransportPageState extends State<MyTransportPage> {
                     cells: [
                       DataCell(
                         TablePiece(
-                          text: '#1',
+                          text: 'ElectroTruck #1',
                         ),
                       ),
                       DataCell(
@@ -74,7 +74,7 @@ class _MyTransportPageState extends State<MyTransportPage> {
                     cells: [
                       DataCell(
                         TablePiece(
-                          text: '#2',
+                          text: 'ElectroTruck #2',
                         ),
                       ),
                       DataCell(

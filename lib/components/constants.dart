@@ -22,10 +22,9 @@ const List<String> transportReportList = [
 ];
 
 const List<String> companyReportList = [
-  'Пример накладной',
-  'Шаблон путевого листа',
-  'Товарно-транспортная накладная',
-  'Инвойс',
+  'Список компаний-пользователей',
+  'Динамика перевозок по отраслям',
+  'Объем перевозок по компаниям'
 ];
 const List<String> stuffFolder = [
   'Журнал от KazNews 06.02.1988',

@@ -99,7 +99,7 @@ class _MapPageState extends State<MapPage> {
               children: [
                 FloatingActionButton(
                   onPressed: _changeMapType,
-                  backgroundColor: kElementsColor,
+                  backgroundColor: Colors.red,
                   child: Icon(
                     Icons.map,
                     size: 30,
@@ -107,9 +107,9 @@ class _MapPageState extends State<MapPage> {
                 ),
                 FloatingActionButton(
                   onPressed: _addMaker,
-                  backgroundColor: kElementsColor,
+                  backgroundColor: Colors.green,
                   child: Icon(
-                    Icons.add_location,
+                    Icons.fire_truck,
                     size: 36,
                   ),
                 ),
@@ -118,17 +118,17 @@ class _MapPageState extends State<MapPage> {
                 ),
                 FloatingActionButton(
                   onPressed: _moveToNewLocation,
-                  backgroundColor: kElementsColor,
+                  backgroundColor: Colors.yellow,
                   child: Icon(
-                    Icons.location_city,
+                    Icons.fire_truck,
                     size: 36,
                   ),
                 ),
                 FloatingActionButton(
                   onPressed: _goToDefaultLocation,
-                  backgroundColor: kElementsColor,
+                  backgroundColor: Colors.blue,
                   child: Icon(
-                    Icons.home_rounded,
+                    Icons.fire_truck,
                     size: 36,
                   ),
                 ),

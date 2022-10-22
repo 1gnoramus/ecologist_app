@@ -2,6 +2,7 @@ import 'package:ecologist_app/components/button_2.dart';
 import 'package:ecologist_app/main_pages/bottom_nav_bar.dart';
 import 'package:ecologist_app/main_pages/map_page.dart';
 import 'package:ecologist_app/roles/driver_role/driver_main.dart';
+import 'package:ecologist_app/roles/sender_role/sender_main.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../components/constants.dart';
@@ -98,8 +99,9 @@ class _LoginPageState extends State<LoginPage> {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                            builder: (context) => DriverMainPage(),
-                          ),
+                              builder: (context) => SenderMainPage()
+                              // DriverMainPage(),
+                              ),
                         );
                       }),
                 )

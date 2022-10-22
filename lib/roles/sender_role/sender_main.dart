@@ -1,7 +1,8 @@
-import 'package:ecologist_app/main_pages/calculation_page.dart';
-import 'package:ecologist_app/main_pages/map_page.dart';
-import 'package:ecologist_app/main_pages/my_transport_page.dart';
-import 'package:ecologist_app/main_pages/report_page.dart';
+import 'package:ecologist_app/roles/sender_role/sender_calcul_page.dart';
+import 'package:ecologist_app/roles/sender_role/sender_map_page.dart';
+import 'package:ecologist_app/roles/sender_role/sender_new_order_page.dart';
+import 'package:ecologist_app/roles/sender_role/sender_orders_page.dart';
+import 'package:ecologist_app/roles/sender_role/sender_report_page.dart';
 import 'package:flutter/material.dart';
 import 'package:ecologist_app/components/constants.dart';
 
@@ -15,10 +16,11 @@ class SenderMainPage extends StatefulWidget {
 class _SenderMainPageState extends State<SenderMainPage> {
   int selectedIndex = 0;
   final screens = [
-    MapPage(cityName: 'Almaty', countryName: 'KZ'),
-    CalculationPage(),
-    MyTransportPage(),
-    ReportPage()
+    SenderMapPage(),
+    SenderOrdersPage(),
+    SenderCalculPage(),
+    SenderNewOrderPage(),
+    SenderReportPage(),
   ];
 
   @override
@@ -33,12 +35,13 @@ class _SenderMainPageState extends State<SenderMainPage> {
           });
         },
         items: [
-          BottomNavigationBarItem(icon: Icon(Icons.map), label: 'Map'),
+          BottomNavigationBarItem(icon: Icon(Icons.map), label: 'Карта'),
+          BottomNavigationBarItem(icon: Icon(Icons.book), label: 'Мои заказы'),
           BottomNavigationBarItem(
-              icon: Icon(Icons.calculate), label: 'Calculate'),
+              icon: Icon(Icons.calculate), label: 'Расчеты'),
           BottomNavigationBarItem(
-              icon: Icon(Icons.fire_truck), label: 'My Transport'),
-          BottomNavigationBarItem(icon: Icon(Icons.report), label: 'Reports'),
+              icon: Icon(Icons.fast_forward), label: 'Вызвать курьера'),
+          BottomNavigationBarItem(icon: Icon(Icons.report), label: 'Отчеты'),
         ],
       ),
       body: screens[selectedIndex],

@@ -3,12 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:ecologist_app/components/constants.dart';
 import 'package:ecologist_app/components/table_cell.dart';
 
-class DriverOrdersPage extends StatefulWidget {
+class SenderOrdersPage extends StatefulWidget {
   @override
-  State<DriverOrdersPage> createState() => _DriverOrdersPageState();
+  State<SenderOrdersPage> createState() => _SenderOrdersPageState();
 }
 
-class _DriverOrdersPageState extends State<DriverOrdersPage> {
+class _SenderOrdersPageState extends State<SenderOrdersPage> {
   String orderNum_1 = '#001';
   String data_1 = '12.02.2022';
   String sender_1 = 'Компания Стекло';

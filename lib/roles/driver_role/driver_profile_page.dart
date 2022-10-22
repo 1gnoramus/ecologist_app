@@ -19,18 +19,13 @@ class _DriverProfilePageState extends State<DriverProfilePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.indigo,
         actions: [
-          IconButton(
-            onPressed: () {},
-            icon: Icon(Icons.search),
-          ),
           IconButton(
             onPressed: () {},
             icon: Icon(Icons.logout),
           ),
         ],
-        title: Text('Profile Page'),
+        title: Text('Профиль'),
       ),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.end,
@@ -115,49 +110,6 @@ class _DriverProfilePageState extends State<DriverProfilePage> {
                         ProfileMainInfoPiece(text: "Ваш рейтинг: $rank")
                       ],
                     ),
-                    Column(
-                      children: [
-                        Container(
-                          child: Center(
-                            child: Icon(
-                              Icons.graphic_eq,
-                              size: 120.0,
-                              color: Colors.purple,
-                            ),
-                          ),
-                        ),
-                        TextButton(
-                          onPressed: () {},
-                          child: Text(
-                            '*посмотрите как составляется график рейтинга',
-                            style:
-                                TextStyle(fontSize: 10.0, color: Colors.black),
-                          ),
-                        ),
-                      ],
-                    ),
-                    Row(
-                      children: [
-                        Column(
-                          children: [
-                            Icon(
-                              Icons.star_rate,
-                              color: Colors.black,
-                              size: 80,
-                            ),
-                            Text('4.8',
-                                style: TextStyle(
-                                    fontSize: 20.0, color: Colors.black))
-                          ],
-                        ),
-                        SizedBox(
-                          width: 20.0,
-                        ),
-                        Text('Список отзывов',
-                            style:
-                                TextStyle(fontSize: 25.0, color: Colors.black))
-                      ],
-                    )
                   ],
                 ),
               ),

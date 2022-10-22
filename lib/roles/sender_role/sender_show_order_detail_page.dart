@@ -2,8 +2,8 @@ import 'package:ecologist_app/components/button_1.dart';
 import 'package:ecologist_app/components/constants.dart';
 import 'package:flutter/material.dart';
 
-class ShowOrderDetailPage extends StatelessWidget {
-  ShowOrderDetailPage(
+class SenderShowOrderDetailPage extends StatelessWidget {
+  SenderShowOrderDetailPage(
       {required this.orderNum,
       required this.data,
       required this.sender,
@@ -46,7 +46,7 @@ class ShowOrderDetailPage extends StatelessWidget {
               style: TextStyle(fontSize: 20.0, color: Colors.black54),
             ),
             SizedBox(
-              height: 5.0,
+              height: 15.0,
             ),
             Container(
               child: Row(
@@ -55,11 +55,17 @@ class ShowOrderDetailPage extends StatelessWidget {
                   Flexible(
                     child: Text(
                       "Дата передачи/Date of removal: $data"
+                      '\n'
                       "\nОткуда вывозят отходы: $sender"
+                      '\n'
                       "\nКуда вывозят отходы: $receiver"
+                      '\n'
                       "\nДанные по машине: $transportInfo"
+                      '\n'
                       "\nНаименование отхода: $wasteType"
-                      "\nКонтакты отправителя: $senderContacts",
+                      '\n'
+                      "\nКонтакты отправителя: $senderContacts"
+                      '\n',
                       textAlign: TextAlign.start,
                       style: TextStyle(fontSize: 15.0, color: Colors.black),
                     ),
@@ -69,9 +75,11 @@ class ShowOrderDetailPage extends StatelessWidget {
             ),
             Button_1(
               textColor: kFontColor,
-              onTap: () {},
+              onTap: () {
+                Navigator.pop;
+              },
               color: kElementsColor,
-              buttonText: 'Выдать курьеру',
+              buttonText: 'Выдать',
             )
           ],
         ),

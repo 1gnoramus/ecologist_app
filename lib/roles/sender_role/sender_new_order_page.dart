@@ -9,15 +9,15 @@ class SenderNewOrderPage extends StatefulWidget {
 class _SenderNewOrderPageState extends State<SenderNewOrderPage> {
   Map<String, dynamic> inputData = {};
 
-  late String uploadPlace;
-  late String downloadPlace;
+  late String wasteType;
+  late String senderContacts;
   late String uploadTime;
   late String transType;
   bool isUrgent = false;
   late String orderStatus;
-  late String cargoType;
+  late String sender;
   late String cargoWeight;
-  late String cargoVolume;
+  late String address;
 
   @override
   Widget build(BuildContext context) {
@@ -47,43 +47,43 @@ class _SenderNewOrderPageState extends State<SenderNewOrderPage> {
                     return Column(
                       children: [
                         OrderTextField(
-                          hintText: 'Тип груза',
-                          icon: Icons.add_box,
+                          hintText: 'Компания-отправитель',
+                          icon: Icons.send_rounded,
                           onTap: (value) {
-                            cargoType = value;
-                            inputData['cargoType'] = cargoType;
+                            sender = value;
+                            inputData['sender'] = sender;
                           },
                         ),
                         OrderTextField(
-                          hintText: 'Объем груза',
-                          icon: Icons.volume_down,
+                          hintText: 'Адрес',
+                          icon: Icons.maps_home_work,
                           onTap: (value) {
-                            cargoVolume = value;
-                            inputData['cargoVolume'] = cargoVolume;
+                            address = value;
+                            inputData['address'] = address;
+                          },
+                        ),
+                        OrderTextField(
+                          hintText: 'Контакты отправителя',
+                          icon: Icons.phone,
+                          onTap: (value) {
+                            senderContacts = value;
+                            inputData['senderContacts'] = senderContacts;
                           },
                         ),
                         OrderTextField(
                           hintText: 'Вес груза',
-                          icon: Icons.line_weight,
+                          icon: Icons.scale,
                           onTap: (value) {
                             cargoWeight = value;
-                            inputData['cargoWeight'] = cargoWeight;
+                            inputData['Тип груза'] = cargoWeight;
                           },
                         ),
                         OrderTextField(
-                          hintText: 'Место отгрузки',
-                          icon: Icons.upload,
+                          hintText: 'Тип груза',
+                          icon: Icons.type_specimen,
                           onTap: (value) {
-                            uploadPlace = value;
-                            inputData['uploadPlace'] = uploadPlace;
-                          },
-                        ),
-                        OrderTextField(
-                          hintText: 'Место выгрузки',
-                          icon: Icons.download,
-                          onTap: (value) {
-                            downloadPlace = value;
-                            inputData['downloadPlace'] = downloadPlace;
+                            wasteType = value;
+                            inputData['wasteType'] = wasteType;
                           },
                         ),
                         GestureDetector(
@@ -105,7 +105,7 @@ class _SenderNewOrderPageState extends State<SenderNewOrderPage> {
                                 size: 30.0,
                               ),
                               Text(
-                                'Мультимодальная перевозка',
+                                'Погрузочно-разгрузочные работы',
                                 style: TextStyle(
                                     color: Colors.black45,
                                     fontSize: 16.0,
@@ -131,7 +131,7 @@ class _SenderNewOrderPageState extends State<SenderNewOrderPage> {
                             margin: EdgeInsets.all(10.0),
                             child: Center(
                               child: Text(
-                                'Рассчитать маршрут',
+                                'Вызвать курьера',
                                 style: TextStyle(
                                     fontSize: 16.0,
                                     fontWeight: FontWeight.bold),

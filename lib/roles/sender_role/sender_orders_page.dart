@@ -1,4 +1,4 @@
-import 'package:ecologist_app/roles/driver_role/show_order_detail_page.dart';
+import 'package:ecologist_app/roles/sender_role/sender_show_order_detail_page.dart';
 import 'package:flutter/material.dart';
 import 'package:ecologist_app/components/constants.dart';
 import 'package:ecologist_app/components/table_cell.dart';
@@ -72,7 +72,7 @@ class _SenderOrdersPageState extends State<SenderOrdersPage> {
                                         bottom: MediaQuery.of(context)
                                             .viewInsets
                                             .bottom),
-                                    child: ShowOrderDetailPage(
+                                    child: SenderShowOrderDetailPage(
                                         orderNum: orderNum_1,
                                         data: data_1,
                                         sender: sender_1,
@@ -90,7 +90,7 @@ class _SenderOrdersPageState extends State<SenderOrdersPage> {
                         TablePiece(text: 'ул. Навои 36'),
                       ),
                       DataCell(
-                        TablePiece(text: 'Готов к отгрузке'),
+                        TablePiece(text: 'Размещено'),
                       ),
                     ],
                   ),
@@ -107,7 +107,7 @@ class _SenderOrdersPageState extends State<SenderOrdersPage> {
                                           bottom: MediaQuery.of(context)
                                               .viewInsets
                                               .bottom),
-                                      child: ShowOrderDetailPage(
+                                      child: SenderShowOrderDetailPage(
                                           orderNum: orderNum_2,
                                           data: data_2,
                                           sender: sender_2,
@@ -124,7 +124,7 @@ class _SenderOrdersPageState extends State<SenderOrdersPage> {
                         TablePiece(text: '2 district'),
                       ),
                       DataCell(
-                        TablePiece(text: 'Готов к отгрузке'),
+                        TablePiece(text: 'Размещено'),
                       ),
                     ],
                   ),

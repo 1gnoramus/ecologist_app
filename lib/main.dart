@@ -1,3 +1,7 @@
+import 'package:ecologist_app/roles/driver_role/driver_main.dart';
+import 'package:ecologist_app/roles/receiver_role/receiver_main.dart';
+import 'package:ecologist_app/roles/sender_role/sender_main.dart';
+import 'package:ecologist_app/roles/storage_role/storage_main.dart';
 import 'package:ecologist_app/welcome_pages/login_page.dart';
 import 'package:ecologist_app/welcome_pages/welcome_page.dart';
 import 'package:flutter/material.dart';
@@ -25,7 +29,11 @@ class _MyAppState extends State<MyApp> {
       ),
       routes: {
         WelcomePage.id: (context) => WelcomePage(),
-        LoginPage.id: (context) => LoginPage()
+        LoginPage.id: (context) => LoginPage(),
+        DriverMainPage.id: (context) => DriverMainPage(),
+        ReceiverMainPage.id: (context) => ReceiverMainPage(),
+        SenderMainPage.id: (context) => SenderMainPage(),
+        StorageMainPage.id: (context) => StorageMainPage(),
       },
       initialRoute: WelcomePage.id,
     );

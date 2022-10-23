@@ -1,5 +1,6 @@
 import 'package:ecologist_app/components/constants.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:qr_flutter/qr_flutter.dart';
 
 class OrderQRPage extends StatefulWidget {
@@ -16,6 +17,7 @@ class _OrderQRPageState extends State<OrderQRPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       resizeToAvoidBottomInset: false,
       appBar: AppBar(),
       body: Container(
@@ -48,23 +50,22 @@ class _OrderQRPageState extends State<OrderQRPage> {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                // Text('Номер заявки: #${widget.order.id}',
-                //     style: TextStyle(fontSize: 15.0, color: kMainThemeColor3)),
                 Container(
+                  margin: EdgeInsets.only(bottom: 20.0, top: 10.0),
                   decoration: BoxDecoration(
-                    color: kElementsColor,
-                    borderRadius: BorderRadius.all(
-                      Radius.circular(20.0),
-                    ),
+                    borderRadius: BorderRadius.all(Radius.circular(15.0)),
+                    color: Colors.black87,
                   ),
-                  child: TextButton(
-                    onPressed: () {},
-                    child: Text(
-                      'Принять заявку',
-                      style: TextStyle(fontSize: 15.0, color: kFontColor),
-                    ),
+                  padding:
+                      EdgeInsets.symmetric(vertical: 15.0, horizontal: 50.0),
+                  child: GestureDetector(
+                    child: Text('Принять заявку',
+                        style: GoogleFonts.ubuntu().copyWith(
+                          fontSize: 16.0,
+                          color: Colors.grey,
+                        )),
                   ),
-                )
+                ),
               ],
             )
           ],

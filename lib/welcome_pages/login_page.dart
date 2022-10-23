@@ -3,6 +3,7 @@ import 'package:ecologist_app/main_pages/bottom_nav_bar.dart';
 import 'package:ecologist_app/main_pages/map_page.dart';
 import 'package:ecologist_app/roles/driver_role/driver_main.dart';
 import 'package:ecologist_app/roles/sender_role/sender_main.dart';
+import 'package:ecologist_app/roles/storage_role/storage_main.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import '../components/constants.dart';
@@ -41,10 +42,10 @@ class _LoginPageState extends State<LoginPage> {
             ),
           ),
           SizedBox(
-            height: 20.0,
+            height: 10.0,
           ),
           Container(
-            padding: EdgeInsets.symmetric(horizontal: 50.0, vertical: 100.0),
+            padding: EdgeInsets.symmetric(horizontal: 50.0, vertical: 80.0),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -94,7 +95,7 @@ class _LoginPageState extends State<LoginPage> {
                   child: Button_1(
                       textColor: kMainThemeColor1,
                       color: kElementsColor,
-                      buttonText: 'Login',
+                      buttonText: 'Sender',
                       onTap: () {
                         Navigator.push(
                           context,
@@ -104,7 +105,40 @@ class _LoginPageState extends State<LoginPage> {
                               ),
                         );
                       }),
-                )
+                ),
+                SizedBox(
+                  height: 10.0,
+                ),
+                Center(
+                  child: Button_1(
+                      textColor: kMainThemeColor1,
+                      color: kEcoElementsColor,
+                      buttonText: 'Driver',
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => DriverMainPage()
+                              // DriverMainPage(),
+                              ),
+                        );
+                      }),
+                ),
+                // Center(
+                //   child: Button_1(
+                //       textColor: kMainThemeColor1,
+                //       color: kElementsColor,
+                //       buttonText: 'Storage Manager',
+                //       onTap: () {
+                //         Navigator.push(
+                //           context,
+                //           MaterialPageRoute(
+                //               builder: (context) => StorageMainPage()
+                //               // DriverMainPage(),
+                //               ),
+                //         );
+                //       }),
+                // ),
               ],
             ),
           ),

@@ -19,7 +19,6 @@ class _SenderMainPageState extends State<SenderMainPage> {
   final screens = [
     SenderMapPage(),
     SenderOrdersPage(),
-    SenderCalculPage(),
     SenderMakeOrderPage(),
     SenderReportPage(),
   ];
@@ -38,8 +37,6 @@ class _SenderMainPageState extends State<SenderMainPage> {
         items: [
           BottomNavigationBarItem(icon: Icon(Icons.map), label: 'Карта'),
           BottomNavigationBarItem(icon: Icon(Icons.book), label: 'Мои заказы'),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.calculate), label: 'Расчеты'),
           BottomNavigationBarItem(
               icon: Icon(Icons.fast_forward), label: 'Вызвать курьера'),
           BottomNavigationBarItem(icon: Icon(Icons.report), label: 'Отчеты'),

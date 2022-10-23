@@ -38,101 +38,126 @@ class _DriverOrdersPageState extends State<DriverOrdersPage> {
         ],
       ),
       backgroundColor: kMainThemeColor1,
-      body: Column(
-        children: [
-          SizedBox(
-            height: 50.0,
-          ),
-          SingleChildScrollView(
-            scrollDirection: Axis.horizontal,
-            child: Card(
-              child: DataTable(
-                columns: [
-                  DataColumn(
-                    label: Text('Номер'),
-                  ),
-                  DataColumn(
-                    label: Text('Адрес'),
-                  ),
-                  DataColumn(
-                    label: Text('Статус'),
-                  )
-                ],
-                rows: [
-                  DataRow(
-                    cells: [
-                      DataCell(
-                        GestureDetector(
-                            onTap: () {
-                              showModalBottomSheet(
-                                context: context,
-                                builder: (context) => SingleChildScrollView(
-                                  child: Container(
-                                    padding: EdgeInsets.only(
-                                        bottom: MediaQuery.of(context)
-                                            .viewInsets
-                                            .bottom),
-                                    child: ShowOrderDetailPage(
-                                        orderNum: orderNum_1,
-                                        data: data_1,
-                                        sender: sender_1,
-                                        receiver: receiver_1,
-                                        transportInfo: transportInfo_1,
-                                        wasteType: wasteType_1,
-                                        senderContacts: senderContacts_1),
-                                  ),
-                                ),
-                              );
-                            },
-                            child: Text('$orderNum_1')),
+      body: Container(
+        padding: EdgeInsets.symmetric(horizontal: 30.0),
+        child: Column(
+          children: [
+            SizedBox(
+              height: 50.0,
+            ),
+            SingleChildScrollView(
+              scrollDirection: Axis.horizontal,
+              child: Card(
+                child: DataTable(
+                  horizontalMargin: 15.0,
+                  columnSpacing: 20.0,
+                  border: TableBorder.all(color: Colors.black54),
+                  dataRowColor:
+                      MaterialStateColor.resolveWith((states) => Colors.white),
+                  headingRowColor:
+                      MaterialStateColor.resolveWith((states) => Colors.white),
+                  columns: [
+                    DataColumn(
+                      label: Text(
+                        'Номер',
+                        style: TextStyle(color: Colors.black54),
                       ),
-                      DataCell(
-                        TablePiece(text: 'ул. Навои 36'),
+                    ),
+                    DataColumn(
+                      label: Text(
+                        'Адрес',
+                        style: TextStyle(color: Colors.black54),
                       ),
-                      DataCell(
-                        TablePiece(text: 'Готов к отгрузке'),
+                    ),
+                    DataColumn(
+                      label: Text(
+                        'Статус',
+                        style: TextStyle(color: Colors.black54),
                       ),
-                    ],
-                  ),
-                  DataRow(
-                    cells: [
-                      DataCell(
-                        GestureDetector(
-                            onTap: () {
-                              showModalBottomSheet(
-                                context: context,
-                                builder: (context) => SingleChildScrollView(
-                                  child: Container(
+                    )
+                  ],
+                  rows: [
+                    DataRow(
+                      cells: [
+                        DataCell(
+                          GestureDetector(
+                              onTap: () {
+                                showModalBottomSheet(
+                                  context: context,
+                                  builder: (context) => SingleChildScrollView(
+                                    child: Container(
                                       padding: EdgeInsets.only(
                                           bottom: MediaQuery.of(context)
                                               .viewInsets
                                               .bottom),
                                       child: ShowOrderDetailPage(
-                                          orderNum: orderNum_2,
-                                          data: data_2,
-                                          sender: sender_2,
-                                          receiver: receiver_2,
-                                          transportInfo: transportInfo_2,
-                                          wasteType: wasteType_2,
-                                          senderContacts: senderContacts_2)),
-                                ),
-                              );
-                            },
-                            child: Text('$orderNum_2')),
-                      ),
-                      DataCell(
-                        TablePiece(text: '2 district'),
-                      ),
-                      DataCell(
-                        TablePiece(text: 'Готов к отгрузке'),
-                      ),
-                    ],
-                  ),
-                ],
+                                          orderNum: orderNum_1,
+                                          data: data_1,
+                                          sender: sender_1,
+                                          receiver: receiver_1,
+                                          transportInfo: transportInfo_1,
+                                          wasteType: wasteType_1,
+                                          senderContacts: senderContacts_1),
+                                    ),
+                                  ),
+                                );
+                              },
+                              child: Text(
+                                '$orderNum_1',
+                                style: TextStyle(color: Colors.black54),
+                              )),
+                        ),
+                        DataCell(
+                          TablePiece(text: 'ул. Навои 36'),
+                        ),
+                        DataCell(
+                          TablePiece(text: 'Готов к отгрузке'),
+                        ),
+                      ],
+                    ),
+                    DataRow(
+                      cells: [
+                        DataCell(
+                          GestureDetector(
+                              onTap: () {
+                                showModalBottomSheet(
+                                  context: context,
+                                  builder: (context) => SingleChildScrollView(
+                                    child: Container(
+                                        padding: EdgeInsets.only(
+                                            bottom: MediaQuery.of(context)
+                                                .viewInsets
+                                                .bottom),
+                                        child: ShowOrderDetailPage(
+                                            orderNum: orderNum_2,
+                                            data: data_2,
+                                            sender: sender_2,
+                                            receiver: receiver_2,
+                                            transportInfo: transportInfo_2,
+                                            wasteType: wasteType_2,
+                                            senderContacts: senderContacts_2)),
+                                  ),
+                                );
+                              },
+                              child: Text(
+                                '$orderNum_2',
+                                style: TextStyle(color: Colors.black54),
+                              )),
+                        ),
+                        DataCell(
+                          TablePiece(text: '2 district'),
+                        ),
+                        DataCell(
+                          TablePiece(text: 'Готов к отгрузке'),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
               ),
-            ),
-          )
-        ],
+            )
+          ],
+        ),
       ),
     );
   }

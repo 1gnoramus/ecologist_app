@@ -11,7 +11,7 @@ class TablePiece extends StatelessWidget {
     return TextButton(
       child: Text(
         text,
-        style: TextStyle(color: kEcoElementsColor),
+        style: TextStyle(color: Colors.black54),
       ),
       onPressed: () {},
     );

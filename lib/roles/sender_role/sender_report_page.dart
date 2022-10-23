@@ -80,7 +80,7 @@ class _SenderReportPageState extends State<SenderReportPage> {
                       Icon(
                         Icons.report,
                         size: 100.0,
-                        color: kElementsColor,
+                        color: Colors.blueAccent,
                       ),
                       SizedBox(
                         width: 10.0,
@@ -160,7 +160,7 @@ class DocumentationPiece extends StatelessWidget {
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.vertical(
                     top: Radius.circular(50.0), bottom: Radius.circular(20.0)),
-                color: Colors.orangeAccent,
+                color: Colors.orangeAccent.shade100,
               ),
               child: Center(
                 child: Text(
@@ -168,7 +168,7 @@ class DocumentationPiece extends StatelessWidget {
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     fontSize: 15.0,
-                    color: Colors.black,
+                    color: Colors.black54,
                   ),
                 ),
               ),
@@ -184,7 +184,7 @@ class DocumentationPiece extends StatelessWidget {
               icon: Icon(
                 Icons.picture_as_pdf,
                 size: 40.0,
-                color: Colors.red,
+                color: Colors.redAccent.shade100,
               ),
             ),
             maxRadius: 30.0,
@@ -199,7 +199,7 @@ class DocumentationPiece extends StatelessWidget {
               icon: Icon(
                 Icons.save_as,
                 size: 40.0,
-                color: Colors.blue,
+                color: Colors.blueAccent.shade100,
               ),
             ),
             maxRadius: 30.0,

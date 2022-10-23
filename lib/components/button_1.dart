@@ -21,7 +21,7 @@ class Button_1 extends StatelessWidget {
         color: color,
         borderRadius: BorderRadius.circular(30.0),
         child: MaterialButton(
-          padding: EdgeInsets.symmetric(horizontal: 80.0, vertical: 10.0),
+          padding: EdgeInsets.symmetric(horizontal: 80.0, vertical: 8.0),
           onPressed: onTap,
           child: Text(
             buttonText,

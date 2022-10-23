@@ -202,7 +202,7 @@ class ManualCalculator extends StatelessWidget {
                       hintText: 'тонн',
                       hintStyle: TextStyle(color: Colors.black54),
                       filled: true,
-                      fillColor: Colors.white,
+                      fillColor: Colors.white60,
                       border: OutlineInputBorder(
                         borderRadius: BorderRadius.all(
                           Radius.circular(10.0),

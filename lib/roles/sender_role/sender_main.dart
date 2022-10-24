@@ -1,7 +1,6 @@
 import 'package:ecologist_app/roles/sender_role/sender_calcul_page.dart';
 import 'package:ecologist_app/roles/sender_role/sender_make_order_page.dart';
 import 'package:ecologist_app/roles/sender_role/sender_map_page.dart';
-import 'package:ecologist_app/roles/sender_role/sender_new_order_page.dart';
 import 'package:ecologist_app/roles/sender_role/sender_orders_page.dart';
 import 'package:ecologist_app/roles/sender_role/sender_report_page.dart';
 import 'package:flutter/material.dart';

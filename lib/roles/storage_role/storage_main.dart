@@ -2,6 +2,10 @@ import 'package:ecologist_app/main_pages/calculation_page.dart';
 import 'package:ecologist_app/main_pages/map_page.dart';
 import 'package:ecologist_app/main_pages/my_transport_page.dart';
 import 'package:ecologist_app/main_pages/report_page.dart';
+import 'package:ecologist_app/roles/storage_role/storage_map_page.dart';
+import 'package:ecologist_app/roles/storage_role/storage_orders_page.dart';
+import 'package:ecologist_app/roles/storage_role/storage_report_page.dart';
+import 'package:ecologist_app/roles/storage_role/storage_transp_page.dart';
 import 'package:flutter/material.dart';
 import 'package:ecologist_app/components/constants.dart';
 
@@ -15,10 +19,10 @@ class StorageMainPage extends StatefulWidget {
 class _StorageMainPageState extends State<StorageMainPage> {
   int selectedIndex = 0;
   final screens = [
-    MapPage(cityName: 'Almaty', countryName: 'KZ'),
-    CalculationPage(),
-    MyTransportPage(),
-    ReportPage()
+    StorageMapPage(),
+    StorageOrdersPage(),
+    StorageTranspPage(),
+    StorageInfoPage()
   ];
 
   @override
@@ -33,12 +37,11 @@ class _StorageMainPageState extends State<StorageMainPage> {
           });
         },
         items: [
-          BottomNavigationBarItem(icon: Icon(Icons.map), label: 'Map'),
+          BottomNavigationBarItem(icon: Icon(Icons.map), label: 'Карта'),
+          BottomNavigationBarItem(icon: Icon(Icons.book), label: 'Мои заказы'),
           BottomNavigationBarItem(
-              icon: Icon(Icons.calculate), label: 'Calculate'),
-          BottomNavigationBarItem(
-              icon: Icon(Icons.fire_truck), label: 'My Transport'),
-          BottomNavigationBarItem(icon: Icon(Icons.report), label: 'Reports'),
+              icon: Icon(Icons.fire_truck), label: 'Мой транспорт'),
+          BottomNavigationBarItem(icon: Icon(Icons.report), label: 'Инфо'),
         ],
       ),
       body: screens[selectedIndex],

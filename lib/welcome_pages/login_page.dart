@@ -89,7 +89,7 @@ class _LoginPageState extends State<LoginPage> {
                   ),
                 ),
                 SizedBox(
-                  height: 80.0,
+                  height: 50.0,
                 ),
                 Center(
                   child: Button_1(
@@ -118,9 +118,23 @@ class _LoginPageState extends State<LoginPage> {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => DriverMainPage()
-                              // DriverMainPage(),
-                              ),
+                              builder: (context) => DriverMainPage()),
+                        );
+                      }),
+                ),
+                SizedBox(
+                  height: 10.0,
+                ),
+                Center(
+                  child: Button_1(
+                      textColor: kMainThemeColor1,
+                      color: Colors.redAccent,
+                      buttonText: 'Storage',
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => StorageMainPage()),
                         );
                       }),
                 ),

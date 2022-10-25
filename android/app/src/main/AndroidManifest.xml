@@ -1,5 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.ecologist_app">
+   <uses-permission android:name='android.permission.ACCESS_COARSE_LOCATION'/>
+
    <application
         android:label="ecologist_app"
         android:name="${applicationName}"
@@ -34,3 +36,4 @@
             android:value="AIzaSyAb-D6C44I-x3JMvLS5g-yE4p_3Xl3jvqs"/>
     </application>
 </manifest>
+ 

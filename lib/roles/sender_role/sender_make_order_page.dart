@@ -1,8 +1,12 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
+import 'package:ecologist_app/models/order_model.dart';
 import 'package:flutter/material.dart';
 import 'package:ecologist_app/components/constants.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
+
+import '../../state/app_state.dart';
 
 class SenderMakeOrderPage extends StatefulWidget {
   @override
@@ -10,181 +14,239 @@ class SenderMakeOrderPage extends StatefulWidget {
 }
 
 class _SenderMakeOrderPageState extends State<SenderMakeOrderPage> {
+  late String senderCompanyName;
+  late String storageName;
+  late String wasteType;
+  late String cargoWeight;
+  late String orderId;
+  late String transpType;
+  String shippingCost = '\$10,99';
+  late String orderStatus;
+
+  Map<String, dynamic> inputData = {};
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       backgroundColor: Colors.white,
-      body: SafeArea(
-        child: Center(
-          child: Column(
-            children: [
-              SizedBox(
-                height: 40.0,
-              ),
-              Container(
-                margin: EdgeInsets.symmetric(horizontal: 45.0),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      'Транспорт',
-                      style: GoogleFonts.ubuntu()
-                          .copyWith(fontSize: 20.0, color: kFontColor),
-                    ),
-                    SizedBox(
-                      height: 20.0,
-                    ),
-                    SingleChildScrollView(
-                      scrollDirection: Axis.horizontal,
-                      child: Row(
-                        children: [
-                          TransportDetail(
-                            icon: Icons.fire_truck_rounded,
-                            containerColor: Color(0xFFFDF6E4),
-                            transportType: 'Truck (10ft)',
-                            cost: '5.45',
-                            iconColor: Colors.redAccent.shade100,
-                            onChangedColor: Colors.red,
-                          ),
-                          TransportDetail(
-                            icon: Icons.fire_truck_outlined,
-                            containerColor: Color(0xFFD0EDF6),
-                            transportType: 'Truck (20ft)',
-                            cost: '7.98',
-                            iconColor: Colors.blueAccent.shade100,
-                            onChangedColor: Colors.blue,
-                          ),
-                          TransportDetail(
-                            icon: Icons.fire_truck_sharp,
-                            containerColor: Color.fromARGB(255, 208, 246, 209),
-                            transportType: 'Truck (40ft)',
-                            cost: '10.11',
-                            iconColor: Colors.greenAccent.shade200,
-                            onChangedColor: Colors.green,
-                          ),
-                        ],
-                      ),
-                    )
-                  ],
-                ),
-              ),
-              SizedBox(
-                height: 20.0,
-              ),
-              Expanded(
-                child: Container(
-                  margin: EdgeInsets.symmetric(horizontal: 45.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        'Детали заказа',
-                        style: GoogleFonts.ubuntu()
-                            .copyWith(fontSize: 20.0, color: kFontColor),
-                      ),
-                      SizedBox(
-                        height: 10.0,
-                      ),
-                      Expanded(
-                        child: ListView.builder(
-                          itemCount: 1,
-                          itemBuilder: (BuildContext context, int index) {
-                            return Column(
-                              children: [
-                                OrderDetail(
-                                    icon: Icons.location_city,
-                                    description: 'Откуда:',
-                                    hint: 'Компания-отправитель'),
-                                OrderDetail(
-                                    icon: Icons.storage,
-                                    description: 'Куда:',
-                                    hint: 'Введите название склада'),
-                                OrderDetail(
-                                  icon: Icons.eco,
-                                  description: 'Тип отходов:',
-                                  hint: 'Выберите тип отходов',
-                                ),
-                                OrderDetail(
-                                  icon: Icons.scale,
-                                  description: 'Вес груза:',
-                                  hint: 'Введите вес груза',
-                                ),
-                              ],
-                            );
-                          },
+      body: Consumer<AppStateManager>(builder: (BuildContext context,
+          AppStateManager appStateManager, Widget? child) {
+        if (appStateManager.orders != null) {
+          return SafeArea(
+            child: Center(
+              child: Column(
+                children: [
+                  SizedBox(
+                    height: 40.0,
+                  ),
+                  Container(
+                    margin: EdgeInsets.symmetric(horizontal: 45.0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          'Транспорт',
+                          style: GoogleFonts.ubuntu()
+                              .copyWith(fontSize: 20.0, color: kFontColor),
                         ),
-                      ),
-                      Container(
-                        margin: EdgeInsets.only(bottom: 10.0, top: 10.0),
-                        child: Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                          children: [
-                            Text(
-                              'Итого:',
-                              style: GoogleFonts.ubuntu().copyWith(
-                                  fontSize: 16.0, color: Colors.black54),
+                        SizedBox(
+                          height: 20.0,
+                        ),
+                        SingleChildScrollView(
+                          scrollDirection: Axis.horizontal,
+                          child: Row(
+                            children: [
+                              TransportDetail(
+                                icon: Icons.fire_truck_rounded,
+                                containerColor: Color(0xFFFDF6E4),
+                                transportType: 'Truck (10ft)',
+                                cost: '5.45',
+                                iconColor: Colors.redAccent.shade100,
+                                onChangedColor: Colors.red,
+                              ),
+                              TransportDetail(
+                                icon: Icons.fire_truck_outlined,
+                                containerColor: Color(0xFFD0EDF6),
+                                transportType: 'Truck (20ft)',
+                                cost: '7.98',
+                                iconColor: Colors.blueAccent.shade100,
+                                onChangedColor: Colors.blue,
+                              ),
+                              TransportDetail(
+                                icon: Icons.fire_truck_sharp,
+                                containerColor:
+                                    Color.fromARGB(255, 208, 246, 209),
+                                transportType: 'Truck (40ft)',
+                                cost: '10.11',
+                                iconColor: Colors.greenAccent.shade200,
+                                onChangedColor: Colors.green,
+                              ),
+                            ],
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+                  SizedBox(
+                    height: 20.0,
+                  ),
+                  Expanded(
+                    child: Container(
+                      margin: EdgeInsets.symmetric(horizontal: 45.0),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Text(
+                            'Детали заказа',
+                            style: GoogleFonts.ubuntu()
+                                .copyWith(fontSize: 20.0, color: kFontColor),
+                          ),
+                          SizedBox(
+                            height: 10.0,
+                          ),
+                          Expanded(
+                            child: ListView.builder(
+                              itemCount: 1,
+                              itemBuilder: (BuildContext context, int index) {
+                                return Column(
+                                  children: [
+                                    OrderDetail(
+                                      icon: Icons.location_city,
+                                      description: 'Откуда:',
+                                      hint: 'Компания-отправитель',
+                                      onTap: (value) {
+                                        senderCompanyName = value;
+                                        inputData['senderCompanyName'] =
+                                            senderCompanyName;
+                                      },
+                                    ),
+                                    OrderDetail(
+                                      icon: Icons.storage,
+                                      description: 'Куда:',
+                                      hint: 'Введите название склада',
+                                      onTap: (value) {
+                                        storageName = value;
+                                        inputData['storageName'] = storageName;
+                                      },
+                                    ),
+                                    OrderDetail(
+                                      icon: Icons.eco,
+                                      description: 'Тип отходов:',
+                                      hint: 'Выберите тип отходов',
+                                      onTap: (value) {
+                                        wasteType = value;
+                                        inputData['wasteType'] = wasteType;
+                                      },
+                                    ),
+                                    OrderDetail(
+                                      icon: Icons.scale,
+                                      description: 'Вес груза:',
+                                      hint: 'Введите вес груза',
+                                      onTap: (value) {
+                                        cargoWeight = value;
+                                        inputData['cargoWeight'] = cargoWeight;
+                                      },
+                                    ),
+                                  ],
+                                );
+                              },
                             ),
-                            Text('\$10,99',
-                                style: GoogleFonts.ubuntu().copyWith(
-                                  fontSize: 18.0,
-                                  color: Colors.black87,
-                                ))
-                          ],
-                        ),
-                      ),
-                      Row(
-                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
+                          ),
                           Container(
-                            padding: EdgeInsets.all(10.0),
-                            decoration: BoxDecoration(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(15.0)),
-                              border: BoxBorder.lerp(
-                                  Border.all(color: Colors.black45),
-                                  Border.all(color: Colors.black45),
-                                  15.0),
+                            margin: EdgeInsets.only(bottom: 10.0, top: 10.0),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Text(
+                                  'Итого:',
+                                  style: GoogleFonts.ubuntu().copyWith(
+                                      fontSize: 16.0, color: Colors.black54),
+                                ),
+                                Text(shippingCost,
+                                    style: GoogleFonts.ubuntu().copyWith(
+                                      fontSize: 18.0,
+                                      color: Colors.black87,
+                                    ))
+                              ],
                             ),
-                            alignment: Alignment.center,
-                            margin: EdgeInsets.only(bottom: 20.0, top: 10.0),
-                            child: Center(
-                              child: GestureDetector(
-                                child: Icon(
-                                  Icons.close,
-                                  size: 30.0,
-                                  color: Colors.black54,
+                          ),
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              Container(
+                                padding: EdgeInsets.all(10.0),
+                                decoration: BoxDecoration(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(15.0)),
+                                  border: BoxBorder.lerp(
+                                      Border.all(color: Colors.black45),
+                                      Border.all(color: Colors.black45),
+                                      15.0),
+                                ),
+                                alignment: Alignment.center,
+                                margin:
+                                    EdgeInsets.only(bottom: 20.0, top: 10.0),
+                                child: Center(
+                                  child: GestureDetector(
+                                    child: Icon(
+                                      Icons.close,
+                                      size: 30.0,
+                                      color: Colors.black54,
+                                    ),
+                                  ),
                                 ),
                               ),
-                            ),
-                          ),
-                          Container(
-                            margin: EdgeInsets.only(bottom: 20.0, top: 10.0),
-                            decoration: BoxDecoration(
-                              borderRadius:
-                                  BorderRadius.all(Radius.circular(15.0)),
-                              color: Colors.black87,
-                            ),
-                            padding: EdgeInsets.symmetric(
-                                vertical: 15.0, horizontal: 50.0),
-                            child: GestureDetector(
-                              child: Text('Отправить запрос',
-                                  style: GoogleFonts.ubuntu().copyWith(
-                                    fontSize: 16.0,
-                                    color: Colors.grey,
-                                  )),
-                            ),
+                              Container(
+                                margin:
+                                    EdgeInsets.only(bottom: 20.0, top: 10.0),
+                                decoration: BoxDecoration(
+                                  borderRadius:
+                                      BorderRadius.all(Radius.circular(15.0)),
+                                  color: Colors.black87,
+                                ),
+                                padding: EdgeInsets.symmetric(
+                                    vertical: 15.0, horizontal: 50.0),
+                                child: GestureDetector(onTap: () async {
+                                  await Provider.of<AppStateManager>(context,
+                                          listen: false)
+                                      .placeNewOrder(OrderModel(
+                                          senderCompanyName: senderCompanyName,
+                                          storageName: storageName,
+                                          wasteType: wasteType,
+                                          cargoWeight: cargoWeight,
+                                          orderId: 'orderId',
+                                          transpType: transpType,
+                                          shippingCost: shippingCost,
+                                          orderStatus:
+                                              'Размещено отправителем'));
+                                  child:
+                                  Text(
+                                    'Отправить запрос',
+                                    style: GoogleFonts.ubuntu().copyWith(
+                                      fontSize: 16.0,
+                                      color: Colors.grey,
+                                    ),
+                                  );
+                                }),
+                              ),
+                            ],
                           )
                         ],
-                      )
-                    ],
-                  ),
-                ),
-              )
-            ],
+                      ),
+                    ),
+                  )
+                ],
+              ),
+            ),
+          );
+        }
+        return Center(
+          child: CircularProgressIndicator(
+            color: Colors.redAccent,
           ),
-        ),
-      ),
+        );
+      }),
     );
   }
 }
@@ -266,15 +328,17 @@ class _TransportDetailState extends State<TransportDetail> {
 }
 
 class OrderDetail extends StatelessWidget {
-  const OrderDetail({
-    required this.icon,
-    required this.description,
-    required this.hint,
-  });
+  OrderDetail(
+      {required this.icon,
+      required this.description,
+      required this.hint,
+      required this.onTap});
 
   final IconData icon;
   final String description;
   final String hint;
+  Function onTap;
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -311,6 +375,10 @@ class OrderDetail extends StatelessWidget {
                 height: 20.0,
                 width: 200.0,
                 child: TextField(
+                    onChanged: (value) {
+                      value.toString();
+                      onTap(value);
+                    },
                     decoration: InputDecoration(
                         border: InputBorder.none,
                         hintText: hint,
@@ -319,11 +387,6 @@ class OrderDetail extends StatelessWidget {
                     style: GoogleFonts.ubuntu()
                         .copyWith(fontSize: 16.0, color: kFontColor)),
               ),
-              // Text(
-              //   '54 кг',
-              //   style: GoogleFonts.ubuntu().copyWith(
-              //       fontSize: 16.0, color: kFontColor),
-              // ),
             ],
           )
         ],

@@ -7,13 +7,14 @@ import 'package:ecologist_app/state/orders_provider.dart';
 import 'package:ecologist_app/welcome_pages/login_page.dart';
 import 'package:ecologist_app/welcome_pages/welcome_page.dart';
 import 'package:flutter/material.dart';
-import 'package:ecologist_app/welcome_pages/login_page.dart';
 import 'package:provider/provider.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'firebase_options.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
+
   runApp(MyApp());
 }
 

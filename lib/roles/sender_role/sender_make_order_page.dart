@@ -30,11 +30,11 @@ class _SenderMakeOrderPageState extends State<SenderMakeOrderPage> {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       backgroundColor: Colors.white,
-      body: Consumer<AppStateManager>(builder: (BuildContext context,
-          AppStateManager appStateManager, Widget? child) {
-        if (appStateManager.orders != null) {
-          return SafeArea(
-            child: Center(
+      body: Consumer<AppStateManager>(
+        builder: (BuildContext context, AppStateManager appStateManager,
+            Widget? child) {
+          if (appStateManager.orders == null) {
+            return Center(
               child: Column(
                 children: [
                   SizedBox(
@@ -100,7 +100,7 @@ class _SenderMakeOrderPageState extends State<SenderMakeOrderPage> {
                           Text(
                             'Детали заказа',
                             style: GoogleFonts.ubuntu()
-                                .copyWith(fontSize: 20.0, color: kFontColor),
+                                .copyWith(fontSize: 15.0, color: kFontColor),
                           ),
                           SizedBox(
                             height: 10.0,
@@ -161,11 +161,11 @@ class _SenderMakeOrderPageState extends State<SenderMakeOrderPage> {
                                 Text(
                                   'Итого:',
                                   style: GoogleFonts.ubuntu().copyWith(
-                                      fontSize: 16.0, color: Colors.black54),
+                                      fontSize: 13.0, color: Colors.black54),
                                 ),
                                 Text(shippingCost,
                                     style: GoogleFonts.ubuntu().copyWith(
-                                      fontSize: 18.0,
+                                      fontSize: 14.0,
                                       color: Colors.black87,
                                     ))
                               ],
@@ -191,7 +191,7 @@ class _SenderMakeOrderPageState extends State<SenderMakeOrderPage> {
                                   child: GestureDetector(
                                     child: Icon(
                                       Icons.close,
-                                      size: 30.0,
+                                      size: 20.0,
                                       color: Colors.black54,
                                     ),
                                   ),
@@ -206,29 +206,31 @@ class _SenderMakeOrderPageState extends State<SenderMakeOrderPage> {
                                   color: Colors.black87,
                                 ),
                                 padding: EdgeInsets.symmetric(
-                                    vertical: 15.0, horizontal: 50.0),
-                                child: GestureDetector(onTap: () async {
-                                  await Provider.of<AppStateManager>(context,
-                                          listen: false)
-                                      .placeNewOrder(OrderModel(
-                                          senderCompanyName: senderCompanyName,
-                                          storageName: storageName,
-                                          wasteType: wasteType,
-                                          cargoWeight: cargoWeight,
-                                          orderId: 'orderId',
-                                          transpType: transpType,
-                                          shippingCost: shippingCost,
-                                          orderStatus:
-                                              'Размещено отправителем'));
-                                  child:
-                                  Text(
+                                    vertical: 10.0, horizontal: 50.0),
+                                child: GestureDetector(
+                                  onTap: () async {
+                                    await Provider.of<AppStateManager>(context,
+                                            listen: false)
+                                        .placeNewOrder(OrderModel(
+                                            senderCompanyName:
+                                                senderCompanyName,
+                                            storageName: storageName,
+                                            wasteType: wasteType,
+                                            cargoWeight: cargoWeight,
+                                            orderId: 'orderId',
+                                            transpType: 'Truck',
+                                            shippingCost: shippingCost,
+                                            orderStatus:
+                                                'Размещено отправителем'));
+                                  },
+                                  child: Text(
                                     'Отправить запрос',
                                     style: GoogleFonts.ubuntu().copyWith(
-                                      fontSize: 16.0,
+                                      fontSize: 14.0,
                                       color: Colors.grey,
                                     ),
-                                  );
-                                }),
+                                  ),
+                                ),
                               ),
                             ],
                           )
@@ -238,15 +240,15 @@ class _SenderMakeOrderPageState extends State<SenderMakeOrderPage> {
                   )
                 ],
               ),
+            );
+          }
+          return Center(
+            child: CircularProgressIndicator(
+              color: Colors.greenAccent,
             ),
           );
-        }
-        return Center(
-          child: CircularProgressIndicator(
-            color: Colors.redAccent,
-          ),
-        );
-      }),
+        },
+      ),
     );
   }
 }
@@ -304,14 +306,14 @@ class _TransportDetailState extends State<TransportDetail> {
               children: [
                 Text(widget.transportType,
                     style: GoogleFonts.ubuntu()
-                        .copyWith(fontSize: 15.0, color: Colors.black45)),
+                        .copyWith(fontSize: 13.0, color: Colors.black45)),
                 SizedBox(
                   height: 10.0,
                 ),
                 Text(
                   '\$${widget.cost} /km',
                   style: GoogleFonts.ubuntu()
-                      .copyWith(fontSize: 25.0, color: kFontColor),
+                      .copyWith(fontSize: 20.0, color: kFontColor),
                 )
               ],
             ),
@@ -356,11 +358,11 @@ class OrderDetail extends StatelessWidget {
         children: [
           Icon(
             icon,
-            size: 50,
+            size: 40,
             color: Colors.black54,
           ),
           SizedBox(
-            width: 20.0,
+            width: 10.0,
           ),
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -369,10 +371,10 @@ class OrderDetail extends StatelessWidget {
                   style: GoogleFonts.ubuntu()
                       .copyWith(fontSize: 12.0, color: Colors.black45)),
               SizedBox(
-                height: 8.0,
+                height: 5.0,
               ),
               Container(
-                height: 20.0,
+                height: 15.0,
                 width: 200.0,
                 child: TextField(
                     onChanged: (value) {
@@ -383,7 +385,7 @@ class OrderDetail extends StatelessWidget {
                         border: InputBorder.none,
                         hintText: hint,
                         hintStyle: GoogleFonts.ubuntu()
-                            .copyWith(fontSize: 14.0, color: Colors.black38)),
+                            .copyWith(fontSize: 12.0, color: Colors.black38)),
                     style: GoogleFonts.ubuntu()
                         .copyWith(fontSize: 16.0, color: kFontColor)),
               ),

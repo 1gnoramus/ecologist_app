@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "580433160519",
+    "firebase_url": "https://ecologistapp-37663-default-rtdb.europe-west1.firebasedatabase.app",
+    "project_id": "ecologistapp-37663",
+    "storage_bucket": "ecologistapp-37663.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:580433160519:android:a43dffe9c200088b6a0462",
+        "android_client_info": {
+          "package_name": "com.ignoramus.ecologist_app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "580433160519-5uv1kqfc1klvn5j24etla50umhqp0u7o.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCE5JfCzIG62ToDwLsVeIiHykrUrlWwExU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "580433160519-5uv1kqfc1klvn5j24etla50umhqp0u7o.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

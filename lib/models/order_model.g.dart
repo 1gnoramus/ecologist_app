@@ -15,6 +15,7 @@ OrderModel _$OrderModelFromJson(Map<String, dynamic> json) => OrderModel(
       transpType: json['transpType'] as String,
       shippingCost: json['shippingCost'] as String,
       orderStatus: json['orderStatus'] as String,
+      documentId: json['documentId'] as String,
     );
 
 Map<String, dynamic> _$OrderModelToJson(OrderModel instance) =>
@@ -24,6 +25,7 @@ Map<String, dynamic> _$OrderModelToJson(OrderModel instance) =>
       'wasteType': instance.wasteType,
       'cargoWeight': instance.cargoWeight,
       'orderId': instance.orderId,
+      'documentId': instance.documentId,
       'transpType': instance.transpType,
       'orderStatus': instance.orderStatus,
       'shippingCost': instance.shippingCost,

@@ -11,13 +11,15 @@ class OrderModel {
       required this.orderId,
       required this.transpType,
       required this.shippingCost,
-      required this.orderStatus});
+      required this.orderStatus,
+      required this.documentId});
 
   final String senderCompanyName;
   final String storageName;
   final String wasteType;
   final String cargoWeight;
   final String orderId;
+  late final String documentId;
   final String transpType;
   final String orderStatus;
 

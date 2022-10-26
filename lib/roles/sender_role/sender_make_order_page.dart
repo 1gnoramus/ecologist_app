@@ -1,11 +1,12 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
-
+import 'dart:math';
 import 'package:ecologist_app/models/order_model.dart';
+import 'package:ecologist_app/roles/sender_role/sender_main.dart';
+import 'package:ecologist_app/roles/sender_role/sender_orders_page.dart';
 import 'package:flutter/material.dart';
 import 'package:ecologist_app/components/constants.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-
 import '../../state/app_state.dart';
 
 class SenderMakeOrderPage extends StatefulWidget {
@@ -23,6 +24,10 @@ class _SenderMakeOrderPageState extends State<SenderMakeOrderPage> {
   String shippingCost = '\$10,99';
   late String orderStatus;
 
+  late String generatedOrderId;
+
+  int randomNumber = Random().nextInt(99999) + 10000;
+
   Map<String, dynamic> inputData = {};
 
   @override
@@ -33,7 +38,7 @@ class _SenderMakeOrderPageState extends State<SenderMakeOrderPage> {
       body: Consumer<AppStateManager>(
         builder: (BuildContext context, AppStateManager appStateManager,
             Widget? child) {
-          if (appStateManager.orders == null) {
+          if (appStateManager.orders != null) {
             return Center(
               child: Column(
                 children: [
@@ -189,6 +194,7 @@ class _SenderMakeOrderPageState extends State<SenderMakeOrderPage> {
                                     EdgeInsets.only(bottom: 20.0, top: 10.0),
                                 child: Center(
                                   child: GestureDetector(
+                                    onTap: () {},
                                     child: Icon(
                                       Icons.close,
                                       size: 20.0,
@@ -209,19 +215,41 @@ class _SenderMakeOrderPageState extends State<SenderMakeOrderPage> {
                                     vertical: 10.0, horizontal: 50.0),
                                 child: GestureDetector(
                                   onTap: () async {
-                                    await Provider.of<AppStateManager>(context,
-                                            listen: false)
-                                        .placeNewOrder(OrderModel(
-                                            senderCompanyName:
-                                                senderCompanyName,
-                                            storageName: storageName,
-                                            wasteType: wasteType,
-                                            cargoWeight: cargoWeight,
-                                            orderId: 'orderId',
-                                            transpType: 'Truck',
-                                            shippingCost: shippingCost,
-                                            orderStatus:
-                                                'Размещено отправителем'));
+                                    var order =
+                                        await Provider.of<AppStateManager>(
+                                                context,
+                                                listen: false)
+                                            .placeNewOrder(OrderModel(
+                                                documentId: 'Pisun',
+                                                senderCompanyName:
+                                                    senderCompanyName,
+                                                storageName: storageName,
+                                                wasteType: wasteType,
+                                                cargoWeight: cargoWeight,
+                                                orderId:
+                                                    randomNumber.toString(),
+                                                transpType: 'Truck',
+                                                shippingCost: shippingCost,
+                                                orderStatus:
+                                                    'Размещено отправителем'));
+
+                                    ScaffoldMessenger.of(context).showSnackBar(
+                                      SnackBar(
+                                        backgroundColor: Colors.blueAccent,
+                                        content: Text('Заявка размещена'),
+                                        action: SnackBarAction(
+                                          label: "Отлично!",
+                                          onPressed: () {},
+                                        ),
+                                      ),
+                                    );
+                                    Navigator.push(
+                                      context,
+                                      MaterialPageRoute(
+                                        builder: (context) =>
+                                            SenderOrdersPage(),
+                                      ),
+                                    );
                                   },
                                   child: Text(
                                     'Отправить запрос',
@@ -280,16 +308,15 @@ class _TransportDetailState extends State<TransportDetail> {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        print('$isChosen');
-        setState(() {
-          if (isChosen) {
-            isChosen = false;
-          } else {
-            isChosen = true;
-          }
-          ;
-        });
-        print('$isChosen');
+        setState(
+          () {
+            if (isChosen) {
+              isChosen = false;
+            } else {
+              isChosen = true;
+            }
+          },
+        );
       },
       child: Container(
         margin: EdgeInsets.symmetric(horizontal: 10.0),

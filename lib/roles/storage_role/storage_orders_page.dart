@@ -1,10 +1,15 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
+import 'package:ecologist_app/models/order_model.dart';
 import 'package:ecologist_app/roles/driver_role/show_order_detail_page.dart';
+import 'package:ecologist_app/roles/storage_role/storage_show_order_detail_page.dart';
 import 'package:flutter/material.dart';
 import 'package:ecologist_app/components/constants.dart';
 import 'package:ecologist_app/components/table_cell.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:provider/provider.dart';
+
+import '../../state/app_state.dart';
 
 class StorageOrdersPage extends StatefulWidget {
   @override
@@ -12,6 +17,17 @@ class StorageOrdersPage extends StatefulWidget {
 }
 
 class _StorageOrdersPageState extends State<StorageOrdersPage> {
+  void getOrders() async {
+    await Provider.of<AppStateManager>(context, listen: false)
+        .getDriverOrders();
+  }
+
+  @override
+  void initState() {
+    getOrders();
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,12 +41,13 @@ class _StorageOrdersPageState extends State<StorageOrdersPage> {
         ],
       ),
       backgroundColor: kMainThemeColor1,
-      body: Container(
-        padding: EdgeInsets.symmetric(horizontal: 30.0, vertical: 20.0),
-        child: ListView.builder(
-            itemCount: 1,
-            itemBuilder: (BuildContext context, int index) {
-              return Column(
+      body: Consumer<AppStateManager>(
+        builder: (BuildContext context, AppStateManager appStateManager,
+            Widget? child) {
+          if (appStateManager.orders != null) {
+            return Container(
+              padding: EdgeInsets.symmetric(horizontal: 30.0, vertical: 20.0),
+              child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Container(
@@ -160,47 +177,31 @@ class _StorageOrdersPageState extends State<StorageOrdersPage> {
                   SizedBox(
                     height: 35.0,
                   ),
-                  OrderHistory(
-                    orderNum: '#231241241',
-                    orderStatus: 'Размещено отправителем',
-                  ),
-                  OrderHistory(
-                    orderNum: '#214124123',
-                    orderStatus: 'Закреплено за водителем_1',
-                  ),
-                  OrderHistory(
-                    orderNum: '#562431324',
-                    orderStatus: 'Принято у отправителя',
-                  ),
-                  OrderHistory(
-                    orderNum: '#897573323',
-                    orderStatus: 'Доставлено на склад',
-                  ),
-                  OrderHistory(
-                    orderNum: '#564253255',
-                    orderStatus: 'Готово к отгрузке',
-                  ),
-                  OrderHistory(
-                    orderNum: '#607572521',
-                    orderStatus: 'Закреплено за водителем_2',
-                  ),
-                  OrderHistory(
-                    orderNum: '#607572521',
-                    orderStatus: 'Завершено',
+                  Expanded(
+                    child: ListView.builder(
+                      itemCount: appStateManager.orders!.length,
+                      itemBuilder: (BuildContext context, int index) {
+                        return OrderHistory(
+                          order: appStateManager.orders![index],
+                        );
+                      },
+                    ),
                   ),
                 ],
-              );
-            }),
+              ),
+            );
+          }
+          return const CircularProgressIndicator();
+        },
       ),
     );
   }
 }
 
 class OrderHistory extends StatelessWidget {
-  OrderHistory({required this.orderNum, required this.orderStatus});
+  OrderHistory({required this.order});
 
-  final String orderNum;
-  final String orderStatus;
+  OrderModel order;
 
   @override
   Widget build(BuildContext context) {
@@ -221,20 +222,25 @@ class OrderHistory extends StatelessWidget {
                     CircleAvatar(
                         backgroundColor: Color(0xFFFDF6E4),
                         child: Icon(Icons.local_shipping_outlined,
-                            color: orderStatus == 'Размещено отправителем'
+                            color: order.orderStatus == 'Размещено отправителем'
                                 ? Colors.red
-                                : orderStatus == 'Закреплено за водителем_1'
+                                : order.orderStatus ==
+                                        'Закреплено за водителем_1'
                                     ? Colors.redAccent
-                                    : orderStatus == 'Принято у отправителя'
+                                    : order.orderStatus ==
+                                            'Принято у отправителя'
                                         ? Colors.orange
-                                        : orderStatus == 'Доставлено на склад'
+                                        : order.orderStatus ==
+                                                'Доставлено на склад'
                                             ? Colors.orangeAccent
-                                            : orderStatus == 'Готово к отгрузке'
+                                            : order.orderStatus ==
+                                                    'Готово к отгрузке'
                                                 ? Colors.yellow
-                                                : orderStatus ==
+                                                : order.orderStatus ==
                                                         'Закреплено за водителем_2'
                                                     ? Colors.yellowAccent
-                                                    : orderStatus == 'Завершено'
+                                                    : order.orderStatus ==
+                                                            'Завершено'
                                                         ? Colors.green
                                                         : Colors.black26)),
                     SizedBox(
@@ -243,13 +249,13 @@ class OrderHistory extends StatelessWidget {
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Text(orderNum,
+                        Text(order.orderId,
                             style: GoogleFonts.ubuntu()
                                 .copyWith(fontSize: 14.0, color: kFontColor)),
                         SizedBox(
                           height: 8.0,
                         ),
-                        Text(orderStatus,
+                        Text(order.orderStatus,
                             style: GoogleFonts.ubuntu()
                                 .copyWith(fontSize: 12.0, color: Colors.grey))
                       ],
@@ -257,7 +263,43 @@ class OrderHistory extends StatelessWidget {
                   ],
                 ),
                 GestureDetector(
-                  onTap: () {},
+                  onTap: () {
+                    showModalBottomSheet(
+                      context: context,
+                      builder: (context) => SingleChildScrollView(
+                        child: Container(
+                          padding: EdgeInsets.only(
+                              bottom: MediaQuery.of(context).viewInsets.bottom),
+                          child: StorageShowOrderDetailPage(
+                            orderId: order.documentId,
+                            order: order,
+                            buttonText: order.orderStatus ==
+                                    'Размещено отправителем'
+                                ? 'Выдать водителю_1'
+                                : order.orderStatus ==
+                                        'Закреплено за водителем_1'
+                                    ? 'Отправить водителя_1'
+                                    : order.orderStatus ==
+                                            'Принято у отправителя'
+                                        ? 'Закрыть'
+                                        : order.orderStatus ==
+                                                'Доставлено на склад'
+                                            ? 'Разместить на складе'
+                                            : order.orderStatus ==
+                                                    'Готово к отгрузке'
+                                                ? 'Выдать водителю_2'
+                                                : order.orderStatus ==
+                                                        'Закреплено за водителем_2'
+                                                    ? 'Отправить водителя_2'
+                                                    : order.orderStatus ==
+                                                            'Завершено'
+                                                        ? 'Добавить в отчет'
+                                                        : '???',
+                          ),
+                        ),
+                      ),
+                    );
+                  },
                   child: Icon(
                     Icons.navigate_next,
                     color: Colors.black87,

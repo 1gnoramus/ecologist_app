@@ -12,27 +12,48 @@ class AppStateManager extends ChangeNotifier {
 
   Map<List, dynamic> newOrders = {};
 
-  Future<void> changeOrderStatus_InProc(orderId) async {
+  Future<void> changeOrderStatus_Driv_1(orderId) async {
     try {
-      final response = await orderProvider?.changeOrderStatus_InProc(orderId);
+      final response = await orderProvider?.changeOrderStatus_Driv_1(orderId);
     } catch (e) {
       throw Exception('Exception on getDriverOrders: $e');
     }
     notifyListeners();
   }
 
-  Future<void> changeOrderStatus_Accepted(orderId) async {
+  Future<void> changeOrderStatus_AcceptedFromSender(orderId) async {
     try {
-      final response = await orderProvider?.changeOrderStatus_Accepted(orderId);
+      final response =
+          await orderProvider?.changeOrderStatus_AcceptedFromSender(orderId);
     } catch (e) {
       throw Exception('Exception on getDriverOrders: $e');
     }
     notifyListeners();
   }
 
-  Future<void> changeOrderStatus_Rejected(orderId) async {
+  Future<void> changeOrderStatus_DeliveredToStorage(orderId) async {
     try {
-      final response = await orderProvider?.changeOrderStatus_Rejected(orderId);
+      final response =
+          await orderProvider?.changeOrderStatus_DeliveredToStorage(orderId);
+    } catch (e) {
+      throw Exception('Exception on getDriverOrders: $e');
+    }
+    notifyListeners();
+  }
+
+  Future<void> changeOrderStatus_ReadyForShippment(orderId) async {
+    try {
+      final response =
+          await orderProvider?.changeOrderStatus_ReadyForShippment(orderId);
+    } catch (e) {
+      throw Exception('Exception on getDriverOrders: $e');
+    }
+    notifyListeners();
+  }
+
+  Future<void> changeOrderStatus_Driv_2(orderId) async {
+    try {
+      final response = await orderProvider?.changeOrderStatus_Driv_2(orderId);
     } catch (e) {
       throw Exception('Exception on getDriverOrders: $e');
     }
@@ -49,15 +70,6 @@ class AppStateManager extends ChangeNotifier {
     notifyListeners();
   }
 
-  Future<void> changeOrderStatus_Deleted(orderId) async {
-    try {
-      final response = await orderProvider?.changeOrderStatus_Deleted(orderId);
-    } catch (e) {
-      throw Exception('Exception on getDriverOrders: $e');
-    }
-    notifyListeners();
-  }
-
   Future<void> getDriverOrders() async {
     try {
       final response = await orderProvider?.getDriverOrders();
@@ -67,6 +79,15 @@ class AppStateManager extends ChangeNotifier {
     }
     notifyListeners();
   }
+
+  // Future<void> getDocumentId() async {
+  //   try {
+  //     final response = await orderProvider?.getDocumentId();
+  //   } catch (e) {
+  //     throw Exception('Exception on getDriverOrders: $e');
+  //   }
+  //   notifyListeners();
+  // }
 
   Future<void> placeNewOrder(orderModel) async {
     try {

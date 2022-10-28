@@ -5,6 +5,7 @@ import 'package:ecologist_app/roles/driver_role/driver_main.dart';
 import 'package:ecologist_app/roles/sender_role/sender_main.dart';
 import 'package:ecologist_app/roles/storage_role/storage_main.dart';
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 import '../components/constants.dart';
 import 'package:ecologist_app/components/button_1.dart';
@@ -91,72 +92,92 @@ class _LoginPageState extends State<LoginPage> {
                 SizedBox(
                   height: 50.0,
                 ),
-                Center(
-                  child: Button_1(
-                      textColor: kMainThemeColor1,
-                      color: kElementsColor,
-                      buttonText: 'Sender',
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => SenderMainPage()
-                              // DriverMainPage(),
-                              ),
-                        );
-                      }),
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    Center(
+                      child: LoginButton(
+                          color: kElementsColor,
+                          buttonText: 'Sender',
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => SenderMainPage()
+                                  // DriverMainPage(),
+                                  ),
+                            );
+                          }),
+                    ),
+                    SizedBox(
+                      height: 10.0,
+                    ),
+                    Center(
+                      child: LoginButton(
+                          color: kEcoElementsColor,
+                          buttonText: 'Driver',
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => DriverMainPage()),
+                            );
+                          }),
+                    ),
+                    SizedBox(
+                      height: 10.0,
+                    ),
+                    Center(
+                      child: LoginButton(
+                        color: Colors.redAccent,
+                        buttonText: 'Storage',
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => StorageMainPage()),
+                          );
+                        },
+                      ),
+                    ),
+                  ],
                 ),
-                SizedBox(
-                  height: 10.0,
-                ),
-                Center(
-                  child: Button_1(
-                      textColor: kMainThemeColor1,
-                      color: kEcoElementsColor,
-                      buttonText: 'Driver',
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => DriverMainPage()),
-                        );
-                      }),
-                ),
-                SizedBox(
-                  height: 10.0,
-                ),
-                Center(
-                  child: Button_1(
-                      textColor: kMainThemeColor1,
-                      color: Colors.redAccent,
-                      buttonText: 'Storage',
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => StorageMainPage()),
-                        );
-                      }),
-                ),
-                // Center(
-                //   child: Button_1(
-                //       textColor: kMainThemeColor1,
-                //       color: kElementsColor,
-                //       buttonText: 'Storage Manager',
-                //       onTap: () {
-                //         Navigator.push(
-                //           context,
-                //           MaterialPageRoute(
-                //               builder: (context) => StorageMainPage()
-                //               // DriverMainPage(),
-                //               ),
-                //         );
-                //       }),
-                // ),
               ],
             ),
           ),
         ],
+      ),
+    );
+  }
+}
+
+class LoginButton extends StatelessWidget {
+  const LoginButton(
+      {required this.color, required this.onTap, required this.buttonText});
+
+  final Color color;
+  final VoidCallback onTap;
+  final String buttonText;
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: EdgeInsets.all(8.0),
+      margin: EdgeInsets.symmetric(vertical: 2.0),
+      width: 250,
+      decoration: BoxDecoration(
+        color: color,
+        borderRadius: BorderRadius.all(
+          Radius.circular(15.0),
+        ),
+      ),
+      child: GestureDetector(
+        onTap: onTap,
+        child: Center(
+          child: Text(buttonText,
+              style: GoogleFonts.ubuntu()
+                  .copyWith(fontSize: 30.0, color: Colors.white70)),
+        ),
       ),
     );
   }

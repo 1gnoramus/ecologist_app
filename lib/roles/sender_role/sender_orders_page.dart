@@ -1,4 +1,3 @@
-import 'package:ecologist_app/roles/sender_role/sender_show_order_detail_page.dart';
 import 'package:ecologist_app/roles/sender_role/show_order_detail_page.dart';
 import 'package:flutter/material.dart';
 import 'package:ecologist_app/components/constants.dart';
@@ -7,6 +6,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
 
 import '../../state/app_state.dart';
+import '../driver_role/driver_show_order_detail_page copy.dart';
 
 class SenderOrdersPage extends StatefulWidget {
   @override
@@ -14,22 +14,6 @@ class SenderOrdersPage extends StatefulWidget {
 }
 
 class _SenderOrdersPageState extends State<SenderOrdersPage> {
-  String orderNum_1 = '#001';
-  String data_1 = '12.02.2022';
-  String sender_1 = 'Компания Стекло';
-  String receiver_1 = 'ЭКО-склад Алматы';
-  String transportInfo_1 = 'Машина №1231';
-  String wasteType_1 = 'Стекло';
-  String senderContacts_1 = '+77023315745';
-
-  String orderNum_2 = '#002';
-  String data_2 = '24.05.2022';
-  String sender_2 = 'Компания ГофроКартон';
-  String receiver_2 = 'ЭКО-склад Алматы';
-  String transportInfo_2 = 'Машина №2331';
-  String wasteType_2 = 'Гофрокартон';
-  String senderContacts_2 = '+77023315745';
-
   void getOrders() async {
     await Provider.of<AppStateManager>(context, listen: false)
         .getDriverOrders();
@@ -257,7 +241,7 @@ class OrderHistory extends StatelessWidget {
                             padding: EdgeInsets.only(
                                 bottom:
                                     MediaQuery.of(context).viewInsets.bottom),
-                            child: ShowOrderDetailPage(
+                            child: SenderShowOrderDetailPage(
                                 senderCompanyName: senderCompanyName,
                                 storageName: storageName,
                                 wasteType: wasteType,

@@ -103,33 +103,6 @@ class _DriverMapPageState extends State<DriverMapPage> {
                     size: 30,
                   ),
                 ),
-                FloatingActionButton(
-                  onPressed: _addMaker,
-                  backgroundColor: Colors.green,
-                  child: Icon(
-                    Icons.fire_truck,
-                    size: 36,
-                  ),
-                ),
-                SizedBox(
-                  height: 36.0,
-                ),
-                FloatingActionButton(
-                  onPressed: _moveToNewLocation,
-                  backgroundColor: Colors.yellow,
-                  child: Icon(
-                    Icons.fire_truck,
-                    size: 36,
-                  ),
-                ),
-                FloatingActionButton(
-                  onPressed: _goToDefaultLocation,
-                  backgroundColor: Colors.blue,
-                  child: Icon(
-                    Icons.fire_truck,
-                    size: 36,
-                  ),
-                ),
               ],
             ),
           ),

@@ -1,7 +1,6 @@
 // ignore_for_file: prefer_const_constructors, prefer_const_literals_to_create_immutables
 
 import 'package:ecologist_app/models/order_model.dart';
-import 'package:ecologist_app/roles/driver_role/show_order_detail_page.dart';
 import 'package:ecologist_app/roles/storage_role/storage_show_order_detail_page.dart';
 import 'package:flutter/material.dart';
 import 'package:ecologist_app/components/constants.dart';
@@ -115,62 +114,6 @@ class _StorageOrdersPageState extends State<StorageOrdersPage> {
                     ),
                   ),
                   SizedBox(height: 35.0),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Container(
-                        padding: EdgeInsets.all(10.0),
-                        decoration: BoxDecoration(
-                          color: Color(0xFFFDF6E4),
-                          borderRadius: BorderRadius.all(
-                            Radius.circular(13.0),
-                          ),
-                        ),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Icon(
-                              Icons.shopping_bag_sharp,
-                              color: Colors.redAccent,
-                            ),
-                            SizedBox(
-                              height: 20.0,
-                            ),
-                            Text('Одиночная перевозка',
-                                style: GoogleFonts.ubuntu().copyWith(
-                                    fontSize: 14.0, color: kFontColor))
-                          ],
-                        ),
-                      ),
-                      Container(
-                        padding: EdgeInsets.all(10.0),
-                        decoration: BoxDecoration(
-                          color: Color(0xFFD0EDF6),
-                          borderRadius: BorderRadius.all(
-                            Radius.circular(13.0),
-                          ),
-                        ),
-                        child: Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Icon(
-                              Icons.local_shipping,
-                              color: Colors.redAccent,
-                            ),
-                            SizedBox(
-                              height: 20.0,
-                            ),
-                            Text('Перевозка навалом',
-                                style: GoogleFonts.ubuntu().copyWith(
-                                    fontSize: 14.0, color: kFontColor))
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
-                  SizedBox(
-                    height: 35.0,
-                  ),
                   Text('История заявок',
                       style: GoogleFonts.ubuntu()
                           .copyWith(fontSize: 25.0, color: kFontColor)),
@@ -281,7 +224,7 @@ class OrderHistory extends StatelessWidget {
                                     ? 'Отправить водителя_1'
                                     : order.orderStatus ==
                                             'Принято у отправителя'
-                                        ? 'Закрыть'
+                                        ? 'Отправить водителя на склад'
                                         : order.orderStatus ==
                                                 'Доставлено на склад'
                                             ? 'Разместить на складе'

@@ -3,8 +3,8 @@ import 'package:ecologist_app/components/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
-class ShowOrderDetailPage extends StatelessWidget {
-  ShowOrderDetailPage(
+class SenderShowOrderDetailPage extends StatelessWidget {
+  SenderShowOrderDetailPage(
       {required this.senderCompanyName,
       required this.storageName,
       required this.wasteType,
